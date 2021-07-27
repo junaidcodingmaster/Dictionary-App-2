@@ -1,7 +1,7 @@
 # Dictionary App 2
 Dictionary App 2 is the offline version of Dictionary App.
 
-![Icon of Dictionary App 2](assets\icon.png) 
+![Icon of Dictionary App 2](https://github.com/junaidcodingmaster/Dictionary-App-2/blob/main/assets/icon.png?raw=true) 
 
 This app is a pocket Dictionary App which runs offline.
 
