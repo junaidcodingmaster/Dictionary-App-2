@@ -5,7 +5,7 @@ class AppHeader extends React.Component{
   render(){
     return(
       <View style= {styles.textContainer}>
-        <Text style={styles.text}>Dictionary App</Text>
+        <Text style={styles.text}>Dictionary App 2</Text> 
       </View>
     );
   }

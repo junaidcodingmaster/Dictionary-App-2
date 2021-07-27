@@ -1,5 +1,6 @@
 import React from 'react';
 import { View  , Text , TouchableOpacity , TextInput , StyleSheet} from 'react-native';
+import dictionary from '../database';
 
 class HomeScreen extends React.Component{
     constructor() {
@@ -14,51 +15,25 @@ class HomeScreen extends React.Component{
         };
       }
     
-      getWord=(word)=>{
-        var searchKeyword=word.toLowerCase()
-        var url = "https://rupinwhitehatjr.github.io/dictionary/" + searchKeyword + ".json"
-      
-        return fetch(url)
-        .then((data)=>{
-          if(data.status === 200)
-          {
-            return data.json();
-          }
-          else
-          {
-            return null;
-            alert("Please check your connection " + data.status);
-          }
-        })
-        .then((response)=>{
-    
-            var responseObject = response;
-           
-            if(responseObject)
-            {
-              var wordData = responseObject.definitions[0];
-            
-              var definition=wordData.description;
-              var lexicalCategory=wordData.wordtype;
-              this.setState({
-                "word" : this.state.text, 
-                "definition" :definition,
-                "lexicalCategory": lexicalCategory     
-                
-              });
-            }
-            else
-            {
-              this.setState({
-                "word" : this.state.text, 
-                "definition" :"Not Found",
-                
-              });
-    
-            }
-        
-        });
-      }
+      getWord = (text) => {
+        var text = text.toLowerCase();
+        try {
+          var word = dictionary[text]['word'];
+          var lexicalCategory = dictionary[text]['lexicalCategory'];
+          var definition = dictionary[text]['definition'];
+          this.setState({
+            word: word,
+            lexicalCategory: lexicalCategory,
+            definition: definition,
+          });
+        } catch (err) {
+          alert('Oh no!😓This word is not available in our dictionary ');
+          this.setState({
+            text: '',
+            isSearchPressed: false,
+          });
+        }
+      };
     render(){
     return(
         <View style={styles.container}>
@@ -92,7 +67,7 @@ class HomeScreen extends React.Component{
                       Word :{" "}
                     </Text>
                     <Text style={{fontSize:18 }}>
-                      {this.state.word}
+                      {this.state.text}
                     </Text>
                   </View>
                   <View style={styles.detailsContainer}>
@@ -119,7 +94,7 @@ class HomeScreen extends React.Component{
 
 
 <View style={styles.credits}>
-<Text>Dictionary App : Online Version</Text>
+<Text>Dictionary App : Offline Version</Text>
 <Text style={styles.creditsText}>App made by Junaid</Text>
 </View>
         </View>
@@ -161,7 +136,8 @@ const styles = StyleSheet.create({
     },
     outputContainer:{
         flex:0.7,
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:2
       },
       detailsContainer:{
         flexDirection:'row',
@@ -173,7 +149,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
       },
       credits:{
-        marginTop:370,
+        marginTop:230,
         alignItems:"center"
       },
       creditsText:{
