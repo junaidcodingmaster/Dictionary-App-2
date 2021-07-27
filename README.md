@@ -9,4 +9,4 @@ This app is a pocket Dictionary App which runs offline.
 > [https://github.com/junaidcodingmaster/Dictionary-App-2](https://github.com/junaidcodingmaster/Dictionary-App-2)
 
 - Download Dictionary App 2 :
-> [link](#)  
+> [https://expo.io/artifacts/c7527a15-b321-4f47-b01d-4fa97eb1145b](https://expo.io/artifacts/c7527a15-b321-4f47-b01d-4fa97eb1145b)  
